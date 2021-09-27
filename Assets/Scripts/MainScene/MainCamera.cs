@@ -10,6 +10,7 @@ namespace Overlewd
     {
         void Start()
         {
+            //test change
             ResourceManager.InitializeCache();
 
             if (NetworkHelper.HasNetworkConection())
