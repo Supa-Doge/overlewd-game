@@ -54,6 +54,11 @@ namespace Overlewd
                 UIManager.ShowScreen<MagicGuildScreen>();
             });
 
+            screenRectTransform.Find("Canvas").Find("BuildingList").GetComponent<Button>().onClick.AddListener(() =>
+            {
+                UIManager.ShowScreen<NewBuildingScreen>();
+            });
+            
             screenRectTransform.Find("Canvas").Find("ContentViewer").GetComponent<Button>().onClick.AddListener(() =>
             {
                 UIManager.ShowScreen<DebugContentViewer>();
