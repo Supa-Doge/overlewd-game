@@ -1875,7 +1875,7 @@ GameObject:
   - component: {fileID: 5390502889247943962}
   - component: {fileID: 923058610011407910}
   m_Layer: 0
-  m_Name: PaidBuildingButton
+  m_Name: PaidBuildButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
