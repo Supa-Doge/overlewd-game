@@ -7,6 +7,8 @@ namespace Overlewd
 {
     public class SexScreen : BaseScreen
     {
+        private Coroutine autoplayCoroutine;
+        
         private Button nextButton;
         private Text personageName;
         private Text text;
@@ -16,6 +18,8 @@ namespace Overlewd
 
         private AdminBRO.Dialog dialogData;
         private int currentReplicaId;
+
+        private bool isAutoplayButtonPressed = false;
 
         void Start()
         {
@@ -46,7 +50,16 @@ namespace Overlewd
 
         private void AutoplayButtonClick()
         {
-            StartCoroutine(Autoplay());
+            if (isAutoplayButtonPressed == false)
+            {
+                isAutoplayButtonPressed = true;
+                autoplayCoroutine = StartCoroutine(Autoplay());
+            }
+            else
+            {
+                isAutoplayButtonPressed = false;
+                StopCoroutine(autoplayCoroutine);
+            }
         }
         
         

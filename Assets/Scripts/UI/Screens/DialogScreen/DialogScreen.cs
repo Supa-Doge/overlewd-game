@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace Overlewd
 {
     public class DialogScreen : BaseScreen
     {
+        private Coroutine autoplayCoroutine;
+        
         private Button nextButton;
         private Text personageName;
         private Image personageHead;
@@ -18,9 +21,11 @@ namespace Overlewd
         private AdminBRO.Dialog dialogData;
         private int currentReplicaId;
 
+        private bool isAutoplayButtonPressed = false;
+
         void Start()
         {
-            var screenPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/UI/Screens/DialogScreen/DialogScreen"));
+            var screenPrefab = (GameObject) Instantiate(Resources.Load("Prefabs/UI/Screens/DialogScreen/DialogScreen"));
             var screenRectTransform = screenPrefab.GetComponent<RectTransform>();
             screenRectTransform.SetParent(transform, false);
             UIManager.SetStretch(screenRectTransform);
@@ -40,7 +45,7 @@ namespace Overlewd
 
             autoplayButton = canvas.Find("AutoplayButton").GetComponent<Button>();
             autoplayButton.onClick.AddListener(AutoplayButtonClick);
-            
+
             dialogData = GameData.GetDialogById(GameGlobalStates.dialog_EventStageData.dialogId.Value);
 
             ShowCurrentReplica();
@@ -48,9 +53,18 @@ namespace Overlewd
 
         private void AutoplayButtonClick()
         {
-            StartCoroutine(Autoplay());
+            if (isAutoplayButtonPressed == false)
+            {
+                isAutoplayButtonPressed = true;
+                autoplayCoroutine = StartCoroutine(Autoplay());
+            }
+            else
+            {
+                isAutoplayButtonPressed = false;
+                StopCoroutine(autoplayCoroutine);
+            }
         }
-        
+
         private IEnumerator Autoplay()
         {
             for (int i = 0; i < dialogData.replicas.Count; i++)
