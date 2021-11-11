@@ -15,6 +15,7 @@ namespace Overlewd
 
         private Button skipButton;
         private Button autoplayButton;
+        private Text autoplayStatus;
 
         private AdminBRO.Dialog dialogData;
         private int currentReplicaId;
@@ -41,6 +42,7 @@ namespace Overlewd
             skipButton.onClick.AddListener(SkipButtonClick);
 
             autoplayButton = canvas.Find("AutoplayButton").GetComponent<Button>();
+            autoplayStatus = canvas.Find("AutoplayButton").Find("Status").GetComponent<Text>();
             autoplayButton.onClick.AddListener(AutoplayButtonClick);
 
             dialogData = GameData.GetDialogById(GameGlobalStates.sex_EventStageData.dialogId.Value);
@@ -53,12 +55,18 @@ namespace Overlewd
             if (isAutoplayButtonPressed == false)
             {
                 isAutoplayButtonPressed = true;
+                autoplayStatus.text = "ON";
                 autoplayCoroutine = StartCoroutine(Autoplay());
             }
             else
             {
                 isAutoplayButtonPressed = false;
-                StopCoroutine(autoplayCoroutine);
+                autoplayStatus.text = "OFF";
+                
+                if (autoplayCoroutine != null)
+                {
+                    StopCoroutine(autoplayCoroutine);
+                }
             }
         }
         
