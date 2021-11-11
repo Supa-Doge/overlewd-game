@@ -12,6 +12,7 @@ namespace Overlewd
         private Text text;
 
         private Button skipButton;
+        private Button autoplayButton;
 
         private AdminBRO.Dialog dialogData;
         private int currentReplicaId;
@@ -26,25 +27,29 @@ namespace Overlewd
             var canvas = screenRectTransform.Find("Canvas");
             var textContainer = canvas.Find("TextContainer");
 
-            nextButton = canvas.Find("Next").GetComponent<Button>();
+            nextButton = textContainer.Find("NextButton").GetComponent<Button>();
             nextButton.onClick.AddListener(NextButtonClick);
 
-            personageName = textContainer.Find("Name").GetComponent<Text>();
+            personageName = textContainer.Find("PersonageName").GetComponent<Text>();
             text = textContainer.Find("Text").GetComponent<Text>();
 
             skipButton = canvas.Find("SkipButton").GetComponent<Button>();
             skipButton.onClick.AddListener(SkipButtonClick);
+
+            autoplayButton = canvas.Find("AutoplayButton").GetComponent<Button>();
+            autoplayButton.onClick.AddListener(AutoplayButtonClick);
 
             dialogData = GameData.GetDialogById(GameGlobalStates.sex_EventStageData.dialogId.Value);
 
             ShowCurrentReplica();
         }
 
-        void Update()
+        private void AutoplayButtonClick()
         {
-
+            StartCoroutine(Autoplay());
         }
-
+        
+        
         private void SkipButtonClick()
         {
             UIManager.ShowScreen<EventMapScreen>();
@@ -53,6 +58,7 @@ namespace Overlewd
         private void NextButtonClick()
         {
             currentReplicaId++;
+            
             if (currentReplicaId < dialogData.replicas.Count)
             {
                 ShowCurrentReplica();
@@ -69,6 +75,18 @@ namespace Overlewd
             personageName.text = replica.characterName;
             text.text = replica.message;
         }
+        
+        private IEnumerator Autoplay()
+        {
+            for (int i = 0; i < dialogData.replicas.Count; i++)
+            {
+                currentReplicaId++;
+                if (currentReplicaId < dialogData.replicas.Count)
+                {
+                    ShowCurrentReplica();
+                    yield return new WaitForSeconds(1f);
+                }
+            }
+        }
     }
-
 }

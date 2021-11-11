@@ -13,6 +13,7 @@ namespace Overlewd
         private Text text;
 
         private Button skipButton;
+        private Button autoplayButton;
 
         private AdminBRO.Dialog dialogData;
         private int currentReplicaId;
@@ -37,14 +38,30 @@ namespace Overlewd
             skipButton = canvas.Find("SkipButton").GetComponent<Button>();
             skipButton.onClick.AddListener(SkipButtonClick);
 
+            autoplayButton = canvas.Find("AutoplayButton").GetComponent<Button>();
+            autoplayButton.onClick.AddListener(AutoplayButtonClick);
+            
             dialogData = GameData.GetDialogById(GameGlobalStates.dialog_EventStageData.dialogId.Value);
 
             ShowCurrentReplica();
         }
 
-        void Update()
+        private void AutoplayButtonClick()
         {
-
+            StartCoroutine(Autoplay());
+        }
+        
+        private IEnumerator Autoplay()
+        {
+            for (int i = 0; i < dialogData.replicas.Count; i++)
+            {
+                currentReplicaId++;
+                if (currentReplicaId < dialogData.replicas.Count)
+                {
+                    ShowCurrentReplica();
+                    yield return new WaitForSeconds(1f);
+                }
+            }
         }
 
         private void SkipButtonClick()
