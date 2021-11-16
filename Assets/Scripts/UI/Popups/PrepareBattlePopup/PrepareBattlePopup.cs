@@ -9,14 +9,16 @@ namespace Overlewd
     
     public class PrepareBattlePopup : BasePopup
     {
-        private List<Image> rewards;
         
         private Button backButton;
         private Button battleButton;
         private Button prepareButton;
-
-        private int rewardsCount = 4;       
         
+        private Image firstTimeReward;
+        private Image reward1;
+        private Image reward2;
+        private Image reward3;
+
         private void Start()
         {
             var screenPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/UI/Popups/PrepareBattlePopup/PrepareBattlePopup"));
@@ -24,8 +26,6 @@ namespace Overlewd
             screenRectTransform.SetParent(transform, false);
             UIManager.SetStretch(screenRectTransform);
 
-            rewards = new List<Image>(rewardsCount);
-            
             var canvas = screenRectTransform.Find("Canvas");
 
             backButton = canvas.Find("BackButton").GetComponent<Button>();
@@ -37,23 +37,18 @@ namespace Overlewd
             prepareButton = canvas.Find("PrepareBattleButton").GetComponent<Button>();
             prepareButton.onClick.AddListener(PrepareButtonClick);
             
-            TakeRewards(canvas);
-
-            rewards[0].sprite = Resources.Load<Sprite>("Prefabs/UI/Common/Images/Recources/Crystal");
-            rewards[1].sprite = Resources.Load<Sprite>("Prefabs/UI/Common/Images/Recources/Crystal");
-            rewards[2].sprite = Resources.Load<Sprite>("Prefabs/UI/Common/Images/Recources/Gold");
-            rewards[3].sprite = Resources.Load<Sprite>("Prefabs/UI/Common/Images/Recources/Stone");
+            firstTimeReward = canvas.Find("FirstTimeReward").Find("Resource").GetComponent<Image>();
+            reward1 = canvas.Find("Reward1").Find("Resource").GetComponent<Image>();
+            reward2 = canvas.Find("Reward2").Find("Resource").GetComponent<Image>();
+            reward3 = canvas.Find("Reward3").Find("Resource").GetComponent<Image>();
+            
+            firstTimeReward.sprite = Resources.Load<Sprite>("Prefabs/UI/Common/Images/Recources/Crystal");
+            reward1.sprite = Resources.Load<Sprite>("Prefabs/UI/Common/Images/Recources/Crystal");
+            reward2.sprite = Resources.Load<Sprite>("Prefabs/UI/Common/Images/Recources/Gem");
+            reward3.sprite = Resources.Load<Sprite>("Prefabs/UI/Common/Images/Recources/Gold");
 
         }
 
-        private void TakeRewards(Transform canvas)
-        {
-            rewards.Add(canvas.Find("FirstTimeReward").Find("Resource").GetComponent<Image>());
-            rewards.Add(canvas.Find("Reward1").Find("Resource").GetComponent<Image>());
-            rewards.Add(canvas.Find("Reward2").Find("Resource").GetComponent<Image>());
-            rewards.Add(canvas.Find("Reward3").Find("Resource").GetComponent<Image>());
-        }
-        
         private void BackButtonClick()
         {
             UIManager.HidePopup();
