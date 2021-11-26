@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Overlewd.NSBannerNotification;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +17,8 @@ namespace Overlewd
         private Transform gridForCurrencies;
 
         private Button buyButton;
+        
+        private AdminBRO.TradableItem tradableData;
         
         private void Start()
         {
