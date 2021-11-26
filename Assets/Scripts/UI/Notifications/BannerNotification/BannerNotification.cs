@@ -14,8 +14,8 @@ namespace Overlewd
         private List<NSBannerNotification.ResourceTypeC> resourcesTypeC = new List<NSBannerNotification.ResourceTypeC>();
         private List<NSBannerNotification.ResourceTypeD> resourcesTypeD = new List<NSBannerNotification.ResourceTypeD>();
         
-        private Transform grid1;
-        private Transform grid2;
+        private Transform gridForGoods;
+        private Transform gridForCurrencies;
 
         private Button buyButton;
         
@@ -31,8 +31,8 @@ namespace Overlewd
             buyButton = canvas.Find("BuyButton").GetComponent<Button>();
             buyButton.onClick.AddListener(BuyButtonClick);
 
-            grid1 = canvas.Find("GridForGoods");
-            grid2 = canvas.Find("GridForCurrency");
+            gridForGoods = canvas.Find("GridForGoods");
+            gridForCurrencies = canvas.Find("GridForCurrency");
             
             InstantiateResources("a", 1);
             InstantiateResources("b", 2);
@@ -60,25 +60,25 @@ namespace Overlewd
                 case "a":
                     for (int i = 0; i < count; i++)
                     {
-                        resourcesTypeA.Add(NSBannerNotification.ResourceTypeA.GetInstance(grid1));
+                        resourcesTypeA.Add(NSBannerNotification.ResourceTypeA.GetInstance(gridForGoods));
                     }
                     break;
                 case "b":
                     for (int i = 0; i < count; i++)
                     {
-                        resourcesTypeB.Add(NSBannerNotification.ResourceTypeB.GetInstance(grid1));
+                        resourcesTypeB.Add(NSBannerNotification.ResourceTypeB.GetInstance(gridForGoods));
                     }
                     break;
                 case "c":
                     for (int i = 0; i < count; i++)
                     {
-                        resourcesTypeC.Add(NSBannerNotification.ResourceTypeC.GetInstance(grid2));
+                        resourcesTypeC.Add(NSBannerNotification.ResourceTypeC.GetInstance(gridForCurrencies));
                     }
                     break;
                 case "d":
                     for (int i = 0; i < count; i++)
                     {
-                        resourcesTypeD.Add(NSBannerNotification.ResourceTypeD.GetInstance(grid2));
+                        resourcesTypeD.Add(NSBannerNotification.ResourceTypeD.GetInstance(gridForCurrencies));
                     }
                     break;
             }
