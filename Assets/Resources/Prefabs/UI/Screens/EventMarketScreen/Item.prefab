@@ -818,10 +818,10 @@ RectTransform:
   m_Father: {fileID: 4832885771626134952}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 277.5}
-  m_SizeDelta: {x: 335, y: 430}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 365, y: 481}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3893967840509217606
 CanvasRenderer:
@@ -851,7 +851,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8260ce700f214c14da571891e3c906d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9d0c6160edc3ee438064128b41ebf68, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1226,7 +1226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: -96}
+  m_AnchoredPosition: {x: 1, y: -85.5}
   m_SizeDelta: {x: 372, y: 99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3074064807088951530
@@ -1270,12 +1270,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.8
-  m_Text: 'Deal +15% critical damage
+  m_Text: 'Deal +15% critical damage with the Cat Warrior.
 
-    with the Cat Warrior.
-
-    Claw your way
-    to victory!'
+    Claw your way to
+    victory!'
 --- !u!1 &8615887070331156858
 GameObject:
   m_ObjectHideFlags: 0
