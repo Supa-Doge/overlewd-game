@@ -353,8 +353,8 @@ RectTransform:
   - {fileID: 5154030598188171550}
   - {fileID: 5399497795893310713}
   - {fileID: 1489935879189898675}
-  - {fileID: 6330192966523358171}
   - {fileID: 5720768209003096514}
+  - {fileID: 6330192966523358171}
   - {fileID: 1442813196467421194}
   - {fileID: 3081414806828615045}
   - {fileID: 476358910057545709}
@@ -483,8 +483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -183, y: -101.5}
-  m_SizeDelta: {x: 112, y: 25}
+  m_AnchoredPosition: {x: -180.49896, y: -101.5}
+  m_SizeDelta: {x: 117.0021, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5051615770248343666
 CanvasRenderer:
@@ -515,7 +515,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 65a8ab4e37025af4984102c81836b656, type: 3}
+    m_Font: {fileID: 12800000, guid: dbc2ec2d1a21b23478d6470e83bf6009, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: -2, y: 1}
+  m_EffectDistance: {x: -1, y: 1}
   m_UseGraphicAlpha: 1
 --- !u!1 &4973425605852123029
 GameObject:
@@ -573,7 +573,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8549928023214099940}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -608,7 +608,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 915e9f24c0a388a428903d3eb6c4732f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69fcac6f86344d4489f65b24538b30d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -748,7 +748,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8549928023214099940}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -783,7 +783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6e2be265fb4a8d04889558d22367f1bb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f9d8b50321829c4582e0d08c78baa86, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

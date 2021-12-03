@@ -37,7 +37,7 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  spriteSheet: {fileID: 2800000, guid: ca6673182c7e220468d752ec32fb17b7, type: 3}
+  spriteSheet: {fileID: 2800000, guid: fd20ceb8298ef794eaf585e37a8835ed, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
@@ -103,6 +103,36 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     sprite: {fileID: 5224114810441059499, guid: ca6673182c7e220468d752ec32fb17b7, type: 3}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 161
+      m_Height: 161
+      m_HorizontalBearingX: -80.5
+      m_HorizontalBearingY: 80.5
+      m_HorizontalAdvance: 161
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 161
+      m_Height: 161
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 21300000, guid: ca6673182c7e220468d752ec32fb17b7, type: 3}
+  - m_Index: 4
+    m_Metrics:
+      m_Width: 161
+      m_Height: 161
+      m_HorizontalBearingX: -80.5
+      m_HorizontalBearingY: 80.5
+      m_HorizontalAdvance: 161
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 161
+      m_Height: 161
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 21300000, guid: fd20ceb8298ef794eaf585e37a8835ed, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
 --- !u!21 &4308179617708822948
@@ -125,7 +155,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ca6673182c7e220468d752ec32fb17b7, type: 3}
+        m_Texture: {fileID: 2800000, guid: fd20ceb8298ef794eaf585e37a8835ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
