@@ -857,7 +857,8 @@ MonoBehaviour:
   m_text: Magic forest
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42ddd9967b06d7c4789bd48688a3ba39, type: 2}
-  m_sharedMaterial: {fileID: -8879523899823786595, guid: 42ddd9967b06d7c4789bd48688a3ba39, type: 2}
+  m_sharedMaterial: {fileID: -8879523899823786595, guid: 42ddd9967b06d7c4789bd48688a3ba39,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
