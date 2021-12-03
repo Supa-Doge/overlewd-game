@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,21 +14,29 @@ namespace Overlewd
     {
         public class DialogButton : MonoBehaviour
         {
+            public string header
+            {
+                set
+                {
+                    title.text = value;
+                }
+            }
+            
             private Button button;
             private Transform dialogueDone;
-            private Text title;
+            private TextMeshProUGUI title;
 
-            private void Start()
+            private void Awake()
             {
                 var canvas = transform.Find("Canvas");
 
                 button = canvas.Find("Button").GetComponent<Button>();
                 dialogueDone = button.transform.Find("DialogueDone");
-                title = button.transform.Find("Title").GetComponent<Text>();
+                title = button.transform.Find("Title").GetComponent<TextMeshProUGUI>();
 
                 button.onClick.AddListener(ButtonClick);
             }
-
+            
             public void ButtonClick()
             {
                 UIManager.ShowScreen<SexScreen>();
