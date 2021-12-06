@@ -13,22 +13,6 @@ namespace Overlewd
     {
         public class FightButton : MonoBehaviour
         {
-            public string header
-            {
-                set
-                {
-                    title.text = value;
-                }
-            }
-            
-            public string potentialLoot
-            {
-                set
-                {
-                    loot.text = $"You can loot   <size=26>{value}</size>";
-                }
-            }
-            
             private Button button;
             private Transform fightDone;
             

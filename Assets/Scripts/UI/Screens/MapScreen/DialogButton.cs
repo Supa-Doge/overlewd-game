@@ -14,14 +14,6 @@ namespace Overlewd
     {
         public class DialogButton : MonoBehaviour
         {
-            public string header
-            {
-                set
-                {
-                    title.text = value;
-                }
-            }
-            
             private Button button;
             private Transform dialogueDone;
             private TextMeshProUGUI title;
@@ -36,7 +28,7 @@ namespace Overlewd
 
                 button.onClick.AddListener(ButtonClick);
             }
-            
+
             public void ButtonClick()
             {
                 UIManager.ShowScreen<SexScreen>();

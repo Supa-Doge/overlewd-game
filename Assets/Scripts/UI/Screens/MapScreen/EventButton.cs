@@ -13,22 +13,6 @@ namespace Overlewd
     {
         public class EventButton : MonoBehaviour
         {
-            public string header
-            {
-                set
-                {
-                    title.text = value;
-                }
-            }
-
-            public string eventDescription
-            {
-                set
-                {
-                    description.text = value;
-                }
-            }
-            
             private Button button;
             private TextMeshProUGUI title;
             private TextMeshProUGUI description;
@@ -61,7 +45,7 @@ namespace Overlewd
 
             public static EventButton GetInstance(Transform parent)
             {
-                var newItem = (GameObject) Instantiate(Resources.Load("Prefabs/UI/Screens/MapScreen/Event"), parent);
+                var newItem = (GameObject) Instantiate(Resources.Load("Prefabs/UI/Screens/MapScreen/EventButton"), parent);
                 newItem.name = nameof(EventButton);
 
                 return newItem.AddComponent<EventButton>();

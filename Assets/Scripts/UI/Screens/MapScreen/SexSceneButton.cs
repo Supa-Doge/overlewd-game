@@ -13,14 +13,6 @@ namespace Overlewd
     {
         public class SexSceneButton : MonoBehaviour
         {
-            public string header
-            {
-                set
-                {
-                    title.text = value;
-                }
-            }
-            
             private Button button;
             private Transform sceneDone;
             private TextMeshProUGUI title;
