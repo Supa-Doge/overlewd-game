@@ -11,7 +11,6 @@ namespace Overlewd
     public class MapScreen : BaseScreen
     {
         private Transform map;
-        private Button buffButton;
         private Button chapterButton;
 
         private void Start()
@@ -22,14 +21,13 @@ namespace Overlewd
             UIManager.SetStretch(screenRectTransform);
 
             var canvas = screenRectTransform.Find("Canvas");
-            buffButton = canvas.Find("BuffButton").GetComponent<Button>();
             chapterButton = canvas.Find("ChapterButton").GetComponent<Button>();
 
-            buffButton.onClick.AddListener(BuffButtonClick);
             chapterButton.onClick.AddListener(ChapterButtonClick);
 
             EventsWidget.CreateInstance(transform);
             QuestsWidget.CreateInstance(transform);
+            BuffWidget.CreateInstance(transform);
             SidebarButtonWidget.CreateInstance(transform);
 
             map = canvas.Find("Map");
@@ -54,11 +52,6 @@ namespace Overlewd
 
         private void ChapterButtonClick()
         {
-        }
-
-        private void BuffButtonClick()
-        {
-            UIManager.ShowScreen<GirlScreen>();
         }
     }
 }
