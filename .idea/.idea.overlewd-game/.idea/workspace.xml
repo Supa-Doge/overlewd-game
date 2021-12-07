@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7bd87e0d-28df-4f52-8e6c-18cc56b0cf6e" name="Changes" comment="" />
+    <list default="true" id="7bd87e0d-28df-4f52-8e6c-18cc56b0cf6e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Common/Images/Substrates/SubstrateRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Common/Images/Substrates/SubstrateRight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Common/Images/Substrates/SubstrateRight.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Common/Images/Substrates/SubstrateRight.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Screens/CastleScreen/Castle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Screens/CastleScreen/Castle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Screens/EventMapScreen/EventMap.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Screens/EventMapScreen/EventMap.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Screens/MapScreen/MapScreen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Screens/MapScreen/MapScreen.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/Commissioner-Medium SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/Commissioner-Medium SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/CommissionerOutline1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/CommissionerOutline1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/SansOutline2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/SansOutline2.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
