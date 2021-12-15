@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bd87e0d-28df-4f52-8e6c-18cc56b0cf6e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/SidebarMenuOverlay/SidebarMenuOverlay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/SidebarMenuOverlay/SidebarMenuOverlay.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/SidebarMenuOverlay/SidebarMenuOverlay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/SidebarMenuOverlay/SidebarMenuOverlay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.overlewd-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.overlewd-game/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/MainQuestInfo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/MainQuestInfo.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/QuestButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/QuestButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/QuestDescription.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/QuestDescription.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/QuestOverlay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/QuestOverlay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/SideQuestInfo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Overlays/QuestOverlay/SideQuestInfo.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/MainQuestInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/MainQuestInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/QuestButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/QuestButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/QuestDescription.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/QuestDescription.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/QuestOverlay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/QuestOverlay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/SideQuestInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Overlays/QuestOverlay/SideQuestInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/Commissioner-Medium SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/Commissioner-Medium SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/SansOutline3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/SansOutline3.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/TMP/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/TMP/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +128,7 @@
       <workItem from="1638959693117" duration="6243000" />
       <workItem from="1639128983632" duration="13209000" />
       <workItem from="1639396508554" duration="1066000" />
-      <workItem from="1639570388785" duration="10355000" />
+      <workItem from="1639570388785" duration="12281000" />
     </task>
     <servers />
   </component>
