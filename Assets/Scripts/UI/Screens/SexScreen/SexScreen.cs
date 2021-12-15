@@ -94,11 +94,13 @@ namespace Overlewd
         {
             if (isAutoplayButtonPressed)
             {
+                isAutoplayButtonPressed = true;
                 autoplayButtonPressed.enabled = true;
                 autoplayStatus.text = "ON";
             }
             else
             {
+                isAutoplayButtonPressed = false;
                 autoplayButtonPressed.enabled = false;
                 autoplayStatus.text = "OFF";
             }
