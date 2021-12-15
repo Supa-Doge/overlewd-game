@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,14 +17,16 @@ namespace Overlewd
         protected Transform rightCharacterPos;
 
         protected Button nextButton;
-        protected TextMeshProUGUI personageName;
+        protected Text personageName;
         protected Image personageHead;
-        protected TextMeshProUGUI text;
+        protected Transform emotionBack;
+        protected Transform emotionPos;
+        protected Text text;
 
         protected Button skipButton;
         protected Button autoplayButton;
         protected Image autoplayButtonPressed;
-        protected TextMeshProUGUI autoplayStatus;
+        protected Text autoplayStatus;
 
         protected Transform mainAnimPos;
         protected GameObject cutIn;
@@ -36,14 +37,6 @@ namespace Overlewd
 
         protected bool isAutoplayButtonPressed = false;
 
-        private Dictionary<string, string> characterPrefabPath = new Dictionary<string, string>
-        {
-            [AdminBRO.DialogCharacterName.Overlord] = "Prefabs/UI/Screens/DialogScreen/Overlord",
-            [AdminBRO.DialogCharacterName.Ulvi] = "Prefabs/UI/Screens/DialogScreen/Ulvi",
-            [AdminBRO.DialogCharacterName.UlviWolf] = "Prefabs/UI/Screens/DialogScreen/Ulvi",
-            [AdminBRO.DialogCharacterName.Faye] = "Prefabs/UI/Screens/DialogScreen/Faye",
-            [AdminBRO.DialogCharacterName.Adriel] = "Prefabs/UI/Screens/DialogScreen/Faye"
-        };
         private Dictionary<string, NSDialogScreen.DialogCharacter> characters = 
             new Dictionary<string, NSDialogScreen.DialogCharacter>();
         private Dictionary<string, Transform> slots = new Dictionary<string, Transform>();
@@ -69,16 +62,18 @@ namespace Overlewd
             nextButton = textContainer.Find("NextButton").GetComponent<Button>();
             nextButton.onClick.AddListener(NextButtonClick);
 
-            personageName = textContainer.Find("PersonageName").GetComponent<TextMeshProUGUI>();
+            personageName = textContainer.Find("PersonageName").GetComponent<Text>();
             personageHead = textContainer.Find("PersonageHead").GetComponent<Image>();
-            text = textContainer.Find("Text").GetComponent<TextMeshProUGUI>();
+            emotionBack = textContainer.Find("EmotionBack");
+            emotionPos = emotionBack.Find("EmotionPos");
+            text = textContainer.Find("Text").GetComponent<Text>();
 
             skipButton = canvas.Find("SkipButton").GetComponent<Button>();
             skipButton.onClick.AddListener(SkipButtonClick);
 
             autoplayButton = canvas.Find("AutoplayButton").GetComponent<Button>();
             autoplayButtonPressed = canvas.Find("AutoplayButton").Find("ButtonPressed").GetComponent<Image>();
-            autoplayStatus = canvas.Find("AutoplayButton").Find("Status").GetComponent<TextMeshProUGUI>();
+            autoplayStatus = canvas.Find("AutoplayButton").Find("Status").GetComponent<Text>();
             autoplayButton.onClick.AddListener(AutoplayButtonClick);
             autoplayButtonPressed.enabled = false;
 
@@ -86,11 +81,6 @@ namespace Overlewd
             cutIn = canvas.Find("CutIn").gameObject;
             cutInAnimPos = cutIn.transform.Find("AnimPos");
             cutIn.SetActive(false);
-        }
-
-        void Start()
-        {
-            
         }
 
         protected override async Task PrepareShowOperationsAsync()
@@ -168,7 +158,7 @@ namespace Overlewd
             if (characters[keyName] == null)
             {
                 var slot = slots[keyPos];
-                var prefabPath = characterPrefabPath[keyName];
+                var prefabPath = GameLocalResources.dialogCharacterPrefabPath[keyName];
                 characters[keyName] = NSDialogScreen.DialogCharacter.GetInstance(prefabPath, slot);
 
                 slot_character[keyPos] = keyName;
@@ -221,7 +211,7 @@ namespace Overlewd
 
             foreach (var replica in dialogData.replicas)
             {
-                var keyName = replica.characterName;
+                var keyName = replica.characterKey;
                 var keyPos = replica.characterPosition;
 
                 bool addKeyName = false;
@@ -247,16 +237,21 @@ namespace Overlewd
 
         protected void AutoplayButtonCustomize()
         {
+            var defaultColor = Color.black;
+            var redColor = Color.HSVToRGB(0.9989f, 1.00000f, 0.6118f);
+
             if (isAutoplayButtonPressed)
             {
                 isAutoplayButtonPressed = true;
                 autoplayButtonPressed.enabled = true;
+                autoplayStatus.color = redColor;
                 autoplayStatus.text = "ON";
             }
             else
             {
                 isAutoplayButtonPressed = false;
                 autoplayButtonPressed.enabled = false;
+                autoplayStatus.color = defaultColor;
                 autoplayStatus.text = "OFF";
             }
         }
@@ -285,7 +280,7 @@ namespace Overlewd
             while (currentReplicaId < dialogData.replicas.Count)
             {
                 ShowCurrentReplica();
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(2f);
                 currentReplicaId++;
             }
             AutoplayButtonClick();
@@ -309,7 +304,7 @@ namespace Overlewd
             }
         }
 
-        protected void ShowCurrentReplica()
+        protected virtual void ShowCurrentReplica()
         {
             var prevReplica = (currentReplicaId > 0) ? dialogData.replicas[currentReplicaId - 1] : null;
             if (prevReplica != null)
@@ -334,7 +329,7 @@ namespace Overlewd
                 personageName.text = replica.characterName;
                 text.text = replica.message;
 
-                var keyName = replica.characterName;
+                var keyName = replica.characterKey;
                 var keyPos = replica.characterPosition;
 
                 ShowCharacter(keyName, keyPos);
