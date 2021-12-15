@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bd87e0d-28df-4f52-8e6c-18cc56b0cf6e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.overlewd-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.overlewd-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Popups/PrepareBossFightPopup/PrepareBossFightPopup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Popups/PrepareBossFightPopup/PrepareBossFightPopup.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Popups/PrepareBossFightPopup/PrepareBossFightPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Popups/PrepareBossFightPopup/PrepareBossFightPopup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/Buttons SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/Buttons SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/Commissioner-Medium SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/Commissioner-Medium SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/SansOutline2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/SansOutline2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/SansOutline3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/SansOutline3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Sprite Assets/CurrencyNResources.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Sprite Assets/CurrencyNResources.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Popups/DefeatPopup/DefeatPopup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Popups/DefeatPopup/DefeatPopup.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +115,7 @@
       <workItem from="1638959693117" duration="6243000" />
       <workItem from="1639128983632" duration="13209000" />
       <workItem from="1639396508554" duration="1066000" />
-      <workItem from="1639570388785" duration="8483000" />
+      <workItem from="1639570388785" duration="8840000" />
     </task>
     <servers />
   </component>
