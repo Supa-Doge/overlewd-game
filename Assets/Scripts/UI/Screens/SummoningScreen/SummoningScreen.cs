@@ -11,8 +11,6 @@ namespace Overlewd
         private Button haremButton;
         private Button portalButton;
 
-        private List<Transform> shardPositions = new List<Transform>();
-
         private void Start()
         {
             var screenPrefab = (GameObject)Instantiate(Resources.Load("Prefabs/UI/Screens/SummoningScreen/SummoningScreen"));
@@ -35,12 +33,12 @@ namespace Overlewd
 
         private void Customize()
         {
-            var shardPos = transform.Find("ShardPositions");
-            var childCount = shardPos.Find("ShardPositions").childCount;
+            var shardPositions = transform.Find("Canvas").Find("ShardPositions");
             
-            for (int i = 1; i <= childCount; i++)
+            for (int i = 1; i <= shardPositions.childCount; i++)
             {
-                shardPositions.Add(shardPos.Find($"Shard{i}"));
+                var pos = shardPositions.Find($"Shard{i}");
+                Shard.GetInstance(pos);
             }
         }
         

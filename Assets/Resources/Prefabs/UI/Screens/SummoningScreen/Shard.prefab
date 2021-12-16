@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 6621665003331097280}
   - component: {fileID: 3053896548610654793}
   m_Layer: 0
-  m_Name: ShardBaackground
+  m_Name: ShardBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
