@@ -41,7 +41,7 @@ namespace Overlewd
             private void ButtonClick()
             {
                 GameGlobalStates.eventShop_MarketId = eventMarketId;
-                UIManager.ShowScreen<EventMarketScreen>();
+                // UIManager.ShowScreen<EventMarketScreen>();
             }
 
             public static EventShopButton GetInstance(Transform parent)
