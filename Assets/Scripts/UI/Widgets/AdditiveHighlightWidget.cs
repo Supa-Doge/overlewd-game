@@ -13,50 +13,54 @@ namespace Overlewd
         private Image image;
         private Material material;
         private Color materialColor;
+
+        public Coroutine coroutine;
     
         private void Awake()
         {
             image = aditiveGO.GetComponent<Image>();
             image.sprite = parentTransform.GetComponent<Image>().sprite;
-            image.SetNativeSize();
+            var rect = aditiveGO.GetComponent<RectTransform>();
+            UIManager.SetStretch(rect);
     
-            material = Resources.Load("Material") as Material;
+            material = (Material)Resources.Load("Prefabs/UI/Screens/DialogScreen/AdditiveMtl");
     
             image.material = material;
             materialColor = material.GetColor("_TintColor");
+            coroutine = StartCoroutine(ChangeAlpha());
         }
     
-        private void Start()
-        {
-            ChangeAlpha();
-        }
-    
-        private async void ChangeAlpha()
+        private IEnumerator ChangeAlpha()
         {
             var minAlpha = 0.016f;
             var maxAlpha = 0.09f;
             var alphaStep = 0.007f;
-            var delay = 60; //Milliseconds
+            var delay = 0.055f; //Milliseconds
     
             while (true)
             {
                 for (float i = maxAlpha; i >= minAlpha; i -= alphaStep)
                 {
-                    await Task.Delay(delay);
+                    yield return new WaitForSeconds(delay);
                     materialColor.a = i;
                     material.SetColor("_TintColor", materialColor);
                 }
     
                 for (float i = minAlpha; i <= maxAlpha; i += alphaStep)
                 {
-                    await Task.Delay(delay);
+                    yield return new WaitForSeconds(delay);
                     materialColor.a = i;
                     material.SetColor("_TintColor", materialColor);
                 }
             }
         }
-    
-    
+
+        public void DestroySelf()
+        {
+            StopCoroutine(coroutine);
+            Destroy(gameObject);
+        }
+        
         public static AdditiveHighlight GetInstance(Transform parent)
         {
             parentTransform = parent;
