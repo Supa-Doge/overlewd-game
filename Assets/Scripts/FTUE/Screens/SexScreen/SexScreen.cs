@@ -21,6 +21,13 @@ namespace Overlewd
             protected override async Task EnterScreen()
             {
                 dialogData = GameGlobalStates.sexScreen_DialogData;
+
+                if (dialogData.id == 1)
+                {
+                    blackScreenTop.gameObject.SetActive(true);
+                    blackScreenBot.gameObject.SetActive(true);
+                }
+
                 await Task.CompletedTask;
 
                 var mainSexKey = "MainSex1";
@@ -77,6 +84,7 @@ namespace Overlewd
                     {
                         Destroy(anim?.gameObject);
                     }
+
                     cutInAnimations.Clear();
 
                     if (GameLocalResources.cutInAnimPath.ContainsKey(replica.cutIn))
@@ -104,6 +112,7 @@ namespace Overlewd
                     {
                         Destroy(anim?.gameObject);
                     }
+
                     cutInAnimations.Clear();
                 }
             }
@@ -113,7 +122,23 @@ namespace Overlewd
                 base.ShowCurrentReplica();
 
                 var replica = dialogData.replicas[currentReplicaId];
+                
+                if (currentReplicaId >=2)
+                {
+                   StartCoroutine(FadeOut());
+                }
+                
                 ShowCutIn(replica);
+            }
+
+            private IEnumerator FadeOut()
+            {
+                while (blackScreenTop.fillAmount != 0)
+                {
+                    yield return new WaitForSeconds(0.0005f);
+                    blackScreenTop.fillAmount -= 0.07f;
+                    blackScreenBot.fillAmount -= 0.07f;
+                }
             }
         }
     }
