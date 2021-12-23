@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace Overlewd
 {
@@ -22,7 +23,7 @@ namespace Overlewd
             {
                 dialogData = GameGlobalStates.sexScreen_DialogData;
 
-                if (dialogData.id == 1)
+                if (dialogData.id == 1 || dialogData.id == 3)
                 {
                     blackScreenTop.gameObject.SetActive(true);
                     blackScreenBot.gameObject.SetActive(true);
@@ -123,14 +124,41 @@ namespace Overlewd
 
                 var replica = dialogData.replicas[currentReplicaId];
                 
-                if (currentReplicaId >=2)
+                if (dialogData.id == 1 && currentReplicaId == 2)
                 {
                    StartCoroutine(FadeOut());
                 }
-                
+
+                if (dialogData.id == 3)
+                {
+                    blackScreenTop.fillAmount = 0;
+                    blackScreenBot.fillAmount = 0;
+                    
+                    if (currentReplicaId == 7)
+                    {
+                        StartCoroutine(FadeIn());
+                    }
+                }
+
                 ShowCutIn(replica);
             }
 
+            private IEnumerator FadeIn()
+            {
+                blackScreenTop.fillMethod = Image.FillMethod.Horizontal;
+                blackScreenBot.fillMethod = Image.FillMethod.Horizontal;
+
+                blackScreenBot.fillOrigin = 0;
+                blackScreenTop.fillOrigin = 0;
+                
+                while (blackScreenTop.fillAmount != 1)
+                {
+                    yield return new WaitForSeconds(0.0005f);
+                    blackScreenTop.fillAmount += 0.07f;
+                    blackScreenBot.fillAmount += 0.07f;
+                }
+            }
+            
             private IEnumerator FadeOut()
             {
                 while (blackScreenTop.fillAmount != 0)
