@@ -57,30 +57,40 @@ namespace Overlewd
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Surprised,
+                            replicaSoundId = SoundManager.SoundPath.Animations.MainScene,
+                            replicaSoundKey = SoundManager.SoundKey.MainScene,
                             message = "I can't believe I found him! But… How do I wake him up?"
                         },
                         new AdminBRO.DialogReplica
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Love,
+                            replicaSoundId = SoundManager.SoundPath.Animations.MainScene,
+                            replicaSoundKey = SoundManager.SoundKey.MainScene,
                             message = "Well, at least one part of him seems to be up. I can work with that!",
                         },
                         new AdminBRO.DialogReplica
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Happy,
+                            replicaSoundId = SoundManager.SoundPath.Animations.MainScene,
+                            replicaSoundKey = SoundManager.SoundKey.MainScene,
                             message = "You're finally awake! Took you long enough, Master.",
                         },
                         new AdminBRO.DialogReplica
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Love,
+                            replicaSoundId = SoundManager.SoundPath.Animations.MainScene,
+                            replicaSoundKey = SoundManager.SoundKey.MainScene,
                             message = "M-m-m, your cock tastes so good... I guess the legends were true."
                         },
                         new AdminBRO.DialogReplica
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Love,
+                            replicaSoundId = SoundManager.SoundPath.Animations.CutInLick,
+                            replicaSoundKey = SoundManager.SoundKey.CutInLick,
                             message = "I can lick your cock for hours. It feels so smooth and silky...",
                             cutIn = "CutIn1"
                         },
@@ -88,6 +98,8 @@ namespace Overlewd
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Love,
+                            replicaSoundId = SoundManager.SoundPath.Animations.CutInLick,
+                            replicaSoundKey = SoundManager.SoundKey.CutInLick,
                             message = "You're so big. I can barely fit you inside my tight mouth.",
                             cutIn = "CutIn1"
                         },
@@ -95,12 +107,16 @@ namespace Overlewd
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Love,
+                            replicaSoundId = SoundManager.SoundPath.Animations.MainScene,
+                            replicaSoundKey = SoundManager.SoundKey.MainScene,
                             message = "Please, cum for me, Master! I want to taste you so bad…"
                         },
                         new AdminBRO.DialogReplica
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Happy,
+                            replicaSoundId = SoundManager.SoundPath.Animations.CutInCumshot,
+                            replicaSoundKey = SoundManager.SoundKey.CutInCumshot,
                             message = "Thank you, Master. I'm so happy!",
                             cutIn = "CutIn2"
                         },
@@ -108,6 +124,8 @@ namespace Overlewd
                         {
                             characterName = AdminBRO.DialogCharacterName.Ulvi,
                             animation = AdminBRO.DialogCharacterAnimation.Love,
+                            replicaSoundId = SoundManager.SoundPath.Animations.CutInCumshot,
+                            replicaSoundKey = SoundManager.SoundKey.CutInCumshot,
                             message = "You taste exactly how I imagined. After all those years searching for you…",
                             cutIn = "CutIn2"
                         },
