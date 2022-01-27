@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Overlewd
                 {
                     Destroy(anim?.gameObject);
                 }
+
                 mainAnimations.Clear();
 
                 var mainSexKey = GameGlobalStates.sexScreen_DialogId switch
@@ -44,10 +46,16 @@ namespace Overlewd
 
             private void SetFinalMainAnim()
             {
+                if (GameGlobalStates.sexScreen_DialogId == 1)
+                {
+                    SoundManager.StopAllInstance(true);
+                }
+                
                 foreach (var anim in mainAnimations)
                 {
                     Destroy(anim?.gameObject);
                 }
+
                 mainAnimations.Clear();
 
                 var mainFinalSexKey = GameGlobalStates.sexScreen_DialogId switch
@@ -76,14 +84,15 @@ namespace Overlewd
 
                 dialogData = GameGlobalStates.sexScreen_DialogData;
 
-                if (GameGlobalStates.sexScreen_DialogId == 1/* || 
+                SetMainAnim();
+                
+                if (GameGlobalStates.sexScreen_DialogId == 1 /* || 
                     GameGlobalStates.sexScreen_DialogId == 3*/)
                 {
                     blackScreenTop.gameObject.SetActive(true);
                     blackScreenBot.gameObject.SetActive(true);
+                    mainAnimations[1].PauseAnimation();
                 }
-
-                SetMainAnim();
 
                 await Task.CompletedTask;
             }
@@ -120,6 +129,7 @@ namespace Overlewd
                         {
                             Destroy(anim?.gameObject);
                         }
+
                         cutInAnimations.Clear();
 
                         if (GameLocalResources.cutInAnimPath.ContainsKey(replica.cutIn))
@@ -159,10 +169,33 @@ namespace Overlewd
 
                 var prevReplica = currentReplicaId > 0 ? dialogData.replicas[currentReplicaId - 1] : null;
                 var replica = dialogData.replicas[currentReplicaId];
-                
-                if (GameGlobalStates.sexScreen_DialogId == 1 && currentReplicaId == 2)
+
+                if (GameGlobalStates.sexScreen_DialogId == 1)
                 {
-                    StartCoroutine(FadeOut());
+                    if (currentReplicaId == 2)
+                    {
+                        mainAnimations[1].UnpauseAnimation();
+                        SoundManager.PlayAnimationSound(SoundManager.SoundPath.Animations.MainScene);
+                        StartCoroutine(FadeOut());
+                    }
+                    else if (currentReplicaId == 4)
+                    {
+                        mainAnimations[1].PauseAnimation();
+                       SoundManager.PauseAnimationSound();
+                       SoundManager.PlayCutInSound(SoundManager.SoundPath.Animations.CutInLick);
+                    }
+                    else if (currentReplicaId == 6)
+                    {
+                        mainAnimations[1].UnpauseAnimation();
+                        SoundManager.StopCutInSound(false);
+                        SoundManager.UnpauseAnimationSound();
+                    }
+                    else if (currentReplicaId == 7)
+                    {
+                        mainAnimations[1].PauseAnimation();
+                        SoundManager.PauseAnimationSound();
+                        SoundManager.PlayCutInSound(SoundManager.SoundPath.Animations.CutInCumshot);
+                    }
                 }
 
                 /*if (GameGlobalStates.sexScreen_DialogId == 3)
@@ -176,7 +209,7 @@ namespace Overlewd
                     }
                 }*/
 
-                if (currentReplicaId == dialogData.replicas.Count - 1)//last replica
+                if (currentReplicaId == dialogData.replicas.Count - 1) //last replica
                 {
                     SetFinalMainAnim();
                 }
@@ -191,7 +224,7 @@ namespace Overlewd
 
                 blackScreenBot.fillOrigin = 0;
                 blackScreenTop.fillOrigin = 0;
-                
+
                 while (blackScreenTop.fillAmount != 1)
                 {
                     yield return new WaitForSeconds(0.0005f);
@@ -199,7 +232,7 @@ namespace Overlewd
                     blackScreenBot.fillAmount += 0.07f;
                 }
             }
-            
+
             private IEnumerator FadeOut()
             {
                 while (blackScreenTop.fillAmount != 0)

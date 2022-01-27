@@ -184,12 +184,12 @@ namespace Overlewd
 
         public override void StartShow()
         {
-            SoundManager.PlayUISound(SoundManager.SoundPath.SidebarOverlayOn);
+            SoundManager.PlayUISound(SoundManager.SoundPath.UI.SidebarOverlayOn);
         }
 
         public override void StartHide()
         {
-            SoundManager.PlayUISound(SoundManager.SoundPath.SidebarOverlayOff);
+            SoundManager.PlayUISound(SoundManager.SoundPath.UI.SidebarOverlayOff);
         }
 
         private void Start()
