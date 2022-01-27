@@ -49,12 +49,12 @@ namespace Overlewd
             skeletonGraphic.AnimationState.SetAnimation(0, animationName, loop);
         }
 
-        public void PauseAnimation()
+        public void Pause()
         {
             skeletonGraphic.freeze = true;
         }
 
-        public void UnpauseAnimation()
+        public void Play()
         {
             skeletonGraphic.freeze = false;
         }

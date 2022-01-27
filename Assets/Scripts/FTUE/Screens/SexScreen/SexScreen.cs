@@ -48,9 +48,9 @@ namespace Overlewd
             {
                 if (GameGlobalStates.sexScreen_DialogId == 1)
                 {
-                    SoundManager.StopAllInstance(true);
+                    SoundManager.StopAllInstances(true);
                 }
-                
+
                 foreach (var anim in mainAnimations)
                 {
                     Destroy(anim?.gameObject);
@@ -85,13 +85,13 @@ namespace Overlewd
                 dialogData = GameGlobalStates.sexScreen_DialogData;
 
                 SetMainAnim();
-                
+
                 if (GameGlobalStates.sexScreen_DialogId == 1 /* || 
                     GameGlobalStates.sexScreen_DialogId == 3*/)
                 {
                     blackScreenTop.gameObject.SetActive(true);
                     blackScreenBot.gameObject.SetActive(true);
-                    mainAnimations[1].PauseAnimation();
+                    mainAnimations[1].Pause();
                 }
 
                 await Task.CompletedTask;
@@ -99,6 +99,8 @@ namespace Overlewd
 
             protected override void LeaveScreen()
             {
+                SoundManager.StopAllInstances(true);
+
                 if (GameGlobalStates.sexScreen_DialogId == 1)
                 {
                     GameGlobalStates.battleScreen_StageId = 1;
@@ -153,13 +155,48 @@ namespace Overlewd
                 else
                 {
                     cutIn.SetActive(false);
-
                     foreach (var anim in cutInAnimations)
                     {
                         Destroy(anim?.gameObject);
                     }
 
                     cutInAnimations.Clear();
+                }
+            }
+
+            protected override void PlaySound(AdminBRO.DialogReplica replica, AdminBRO.DialogReplica prevReplica)
+            {
+                var mainSexKey = GameGlobalStates.sexScreen_DialogId switch
+                {
+                    1 => "MainSex1",
+                    2 => "MainSex2",
+                    3 => "MainSex3",
+                    _ => "MainSex1"
+                };
+                
+                if (replica.cutIn != null)
+                {
+                    if (replica.cutIn != prevReplica?.cutIn)
+                    {
+                        if (replica.replicaCutInSoundPath != null)
+                        {
+                            mainAnimations[1].Pause();
+                            SoundManager.SetPause(mainSexKey, true);
+                            SoundManager.CreateEventInstance(replica.cutIn, replica.replicaCutInSoundPath);
+                        }
+                    }
+                }
+                else
+                {
+                    if (replica.replicaMainSoundPath != null)
+                    {
+                        SoundManager.CreateEventInstance(mainSexKey, replica.replicaMainSoundPath);
+                        mainAnimations[1].Play();
+                        SoundManager.SetPause(mainSexKey, false);
+                        
+                        if (prevReplica?.replicaCutInSoundPath != null)
+                            SoundManager.SetPause(prevReplica.cutIn, true);
+                    }
                 }
             }
 
@@ -174,27 +211,8 @@ namespace Overlewd
                 {
                     if (currentReplicaId == 2)
                     {
-                        mainAnimations[1].UnpauseAnimation();
-                        SoundManager.PlayAnimationSound(SoundManager.SoundPath.Animations.MainScene);
                         StartCoroutine(FadeOut());
-                    }
-                    else if (currentReplicaId == 4)
-                    {
-                        mainAnimations[1].PauseAnimation();
-                       SoundManager.PauseAnimationSound();
-                       SoundManager.PlayCutInSound(SoundManager.SoundPath.Animations.CutInLick);
-                    }
-                    else if (currentReplicaId == 6)
-                    {
-                        mainAnimations[1].UnpauseAnimation();
-                        SoundManager.StopCutInSound(false);
-                        SoundManager.UnpauseAnimationSound();
-                    }
-                    else if (currentReplicaId == 7)
-                    {
-                        mainAnimations[1].PauseAnimation();
-                        SoundManager.PauseAnimationSound();
-                        SoundManager.PlayCutInSound(SoundManager.SoundPath.Animations.CutInCumshot);
+                        // SoundManager.CreateEventInstance(replica.replicaSoundKey, replica.replicaSoundId);
                     }
                 }
 
@@ -214,6 +232,7 @@ namespace Overlewd
                     SetFinalMainAnim();
                 }
 
+                PlaySound(replica, prevReplica);
                 ShowCutIn(replica, prevReplica);
             }
 
