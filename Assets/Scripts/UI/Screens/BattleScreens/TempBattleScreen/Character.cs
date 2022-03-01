@@ -16,6 +16,8 @@ namespace Overlewd
 		private enum CharClass { ASSASIN, TANK, WARRIOR, SUPPORT }
 		[SerializeField] private CharClass charClass;
 
+		public float idleScale = 0.5f, battleScale = 0.7f;
+
 		public int initiative = 5, attack = 10, defence = 5, agility = 5;
 		public Item itemSlot1 = null, itemSlot2 = null;
 

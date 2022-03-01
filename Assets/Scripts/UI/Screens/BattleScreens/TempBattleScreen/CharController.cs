@@ -10,7 +10,7 @@ namespace Overlewd
 		public bool isBoss = false;
 
 		public Character character;
-
+		private float idleScale = .5f, battleScale = .7f;
 		[SerializeField] private int battleOrder = -1; //3,2,1 = on the table; -1 = in the deck;
 		public int hp = 100;
 		private int maxHp = 100;
@@ -46,16 +46,14 @@ namespace Overlewd
 			Init();
 		}
 
-		public void Defence()
-		{
-			StartCoroutine(PlayDefence(this));
-		}
+		
 
 		private void Init()
 		{
 			isEnemy = character.isEnemy;
 			battleOrder = character.battleOrder;
-
+			idleScale = character.idleScale;
+			battleScale = character.battleScale;
 			gameObject.AddComponent<RectTransform>();
 			UIManager.SetStretch(GetComponent<RectTransform>());
 
@@ -90,7 +88,7 @@ namespace Overlewd
 		{
 			for (int i = 0; i < spineWidgets.Count; i++)
 			{
-				aniDuration[i] = spineWidgets[i].GetDuration();
+				//aniDuration[i] = spineWidgets[i].GetDuration();
 				Debug.Log($"aniDuration {aniDuration[i]}");
 			}
 		}
@@ -99,7 +97,7 @@ namespace Overlewd
 		{
 			var sW = SpineWidget.GetInstance(transform);
 			sW.Initialize(path);
-			sW.Scale(0.5f);
+			sW.Scale(idleScale);
 			spineWidgets.Add(sW);
 		}
 
@@ -114,6 +112,7 @@ namespace Overlewd
 		{
 			PlayAnimID(0, character.ani_idle_name, true);
 		}
+		
 		public void PlayDifeat()
 		{
 			PlayAnimID(7, character.ani_difeat_name, true);
@@ -131,7 +130,7 @@ namespace Overlewd
 			isNotBusy = true;
 			PlayIdle();
 		}
-
+		
 		IEnumerator PlayDefence(CharController target)
 		{
 			yield return new WaitForSeconds(target.aniDuration[1]);
@@ -145,12 +144,30 @@ namespace Overlewd
 			//GetComponentInChildren<SkeletonGraphic>();
 		}
 
+		public void BattleIn()
+		{
+			//UI.SetActive(false)
+			//SetParentTo Battle Pos
+			//MoveTo Battle Pos Vector3.zero
+			//Change Scale To BattleScale
+		}
+		public void BattleOut()
+		{
+			//Move To battleLayer pos
+			//
+		}
+
 		public void Attack(CharController target)
 		{
 			if (isNotBusy)
 			{
 				StartCoroutine(PlayAttack(0, target));
 			}
+		}
+
+		public void Defence()
+		{
+			StartCoroutine(PlayDefence(this));
 		}
 
 		public void Damage(int value)
