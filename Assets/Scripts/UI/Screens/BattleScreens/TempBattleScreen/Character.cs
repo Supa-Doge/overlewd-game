@@ -28,7 +28,7 @@ namespace Overlewd
 
 		public string folder = "";
 
-		public string 
+		public string
 			ani_idle_path = "idle0_SkeletonData",
 			ani_pAttack_1_path = "prepair1_SkeletonData",
 			ani_pAttack_2_path = "prepair2_SkeletonData",
@@ -36,7 +36,7 @@ namespace Overlewd
 			ani_attack_2_path = "attack2_SkeletonData",
 			ani_defence_path = "defence_SkeletonData",
 			ani_difeat_path = "difeat_SkeletonData";
-		public string 
+		public string
 			ani_idle_name = "idle",
 			ani_pAttack_1_name = "prepair1",
 			ani_pAttack_2_name = "prepair2",

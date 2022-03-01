@@ -1,4 +1,5 @@
-using Spine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Overlewd
@@ -28,19 +29,26 @@ namespace Overlewd
 		[HideInInspector]
 		public int buffDamageScale = 2;
 
+		private bool isNotBusy = true;
 		public bool isDead = false;
-
 
 		private Transform battleLayer;
 		private Transform persPos;
 		private Transform battlePos;
-		private SpineWidget spineWiget;
-
+		private List<SpineWidget> spineWidgets;
+		private float[] aniDuration = { 2f, 0.9f, 0.9f, 1f, 1f, 2f, 2.333f };
+		private int aniID = 0;
 
 		private void Start()
 		{
 			tempBattleScene = FindObjectOfType<TempBattleScreen>();
+			spineWidgets = new List<SpineWidget>();
 			Init();
+		}
+
+		public void Defence()
+		{
+			StartCoroutine(PlayDefence(this));
 		}
 
 		private void Init()
@@ -60,38 +68,89 @@ namespace Overlewd
 				persPos = battleLayer.Find("pers" + battleOrder.ToString())?.transform;
 
 			transform.SetParent(persPos, false);
-			spineWiget = SpineWidget.GetInstance(transform);
+			//0-6
+			var folder = character.folder;
+			InsAndAddSWToList(folder + character.ani_idle_path);
+			InsAndAddSWToList(folder + character.ani_pAttack_1_path);
+			InsAndAddSWToList(folder + character.ani_pAttack_2_path);
+			InsAndAddSWToList(folder + character.ani_attack_1_path);
+			InsAndAddSWToList(folder + character.ani_attack_2_path);
+			InsAndAddSWToList(folder + character.ani_defence_path);
+			InsAndAddSWToList(folder + character.ani_difeat_path);
+
 			PlayIdle();
-			spineWiget.Scale(0.5f);
+
+			/*for (int i = 0; i < spineWidgets.Count; i++)
+			{
+				Debug.Log($"aniDuration {aniDuration[i]}");
+			}*/
 		}
 
-		private void _PlayAnimation(string path, string name, bool loop)
+		private void DurationDataInit() //duration not working
 		{
-			spineWiget.Initialize(path);
-			spineWiget.PlayAnimation(name, loop);
+			for (int i = 0; i < spineWidgets.Count; i++)
+			{
+				aniDuration[i] = spineWidgets[i].GetDuration();
+				Debug.Log($"aniDuration {aniDuration[i]}");
+			}
+		}
+
+		private void InsAndAddSWToList(string path)
+		{
+			var sW = SpineWidget.GetInstance(transform);
+			sW.Initialize(path);
+			sW.Scale(0.5f);
+			spineWidgets.Add(sW);
+		}
+
+		private void PlayAnimID(int listID, string name, bool loop)
+		{
+			spineWidgets[listID].PlayAnimation(name, loop);
+			foreach (var item in spineWidgets) item.gameObject.SetActive(false);
+			spineWidgets[listID].gameObject.SetActive(true);
 		}
 
 		public void PlayIdle()
 		{
-			_PlayAnimation(character.folder + character.ani_idle_path, character.ani_idle_name, true);
+			PlayAnimID(0, character.ani_idle_name, true);
 		}
-
-		public void PlayAttack()
+		public void PlayDifeat()
 		{
-			_PlayAnimation(character.folder + character.ani_attack_1_path, character.ani_attack_1_name, false);
+			PlayAnimID(7, character.ani_difeat_name, true);
 		}
 
+		IEnumerator PlayAttack(int id, CharController target)
+		{
+			isNotBusy = false;
+			PlayAnimID(1 + id, character.ani_pAttack_1_name, false);
+			yield return new WaitForSeconds(aniDuration[1] + id);
+			PlayAnimID(3 + id, character.ani_attack_1_name, false);
+			yield return new WaitForSeconds(aniDuration[3] + id);
+
+			target.Damage(baseDamage * (isDamageBuff ? buffDamageScale : 1));
+			isNotBusy = true;
+			PlayIdle();
+		}
+
+		IEnumerator PlayDefence(CharController target)
+		{
+			yield return new WaitForSeconds(target.aniDuration[1]);
+			PlayAnimID(5, character.ani_defence_name, false);
+			yield return new WaitForSeconds(aniDuration[5]);
+			PlayIdle();
+		}
 
 		private void changeScelet()
 		{
-			GetComponentInChildren<SkeletonGraphic>();
+			//GetComponentInChildren<SkeletonGraphic>();
 		}
 
 		public void Attack(CharController target)
 		{
-			//play animation preAttack -> ...
-			target.Damage(baseDamage * (isDamageBuff ? buffDamageScale : 1));
-			//... -> attack -> idle;
+			if (isNotBusy)
+			{
+				StartCoroutine(PlayAttack(0, target));
+			}
 		}
 
 		public void Damage(int value)

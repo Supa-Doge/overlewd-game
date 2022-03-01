@@ -8,14 +8,14 @@ namespace Overlewd
 		public List<Character> characters;
 		public List<CharController> characterControllerList;
 
-		private void Start()
-		{
-			characters = new List<Character>(Resources.LoadAll<Character>("BattlePersonages"));
-			Initialize();
-		}
+		//public List<CharacterController> conv;
+
+		private void Start() => Initialize();
+		
 
 		private void Initialize()
 		{
+			characters = new List<Character>(Resources.LoadAll<Character>("BattlePersonages"));
 			foreach (var c in characters)
 			{
 				if (c.battleOrder > 0)
@@ -26,6 +26,8 @@ namespace Overlewd
 					characterControllerList.Add(cc);
 				}
 			}
+			//characterControllerList.Sort();
+
 		}
 
 		private void Update()
@@ -44,8 +46,17 @@ namespace Overlewd
 					cc.PlayIdle();
 				}
 			}
+			if (Input.GetKeyDown(KeyCode.C))
+			{
+				foreach (var cc in characterControllerList)
+				{
+					cc.Defence();
+				}
+			}
 		}
 
+		public enum BattleState { ATTACK, DEFENCE, INIT, WIN, LOSE }
+		public BattleState battleState = BattleState.INIT;
 
 	}
 }
