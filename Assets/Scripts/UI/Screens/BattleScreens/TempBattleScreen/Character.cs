@@ -17,6 +17,7 @@ namespace Overlewd
 		[SerializeField] private CharClass charClass;
 
 		public float idleScale = 0.5f, battleScale = 0.7f;
+		public float yOffset = 0f;
 
 		public int initiative = 5, attack = 10, defence = 5, agility = 5;
 		public Item itemSlot1 = null, itemSlot2 = null;

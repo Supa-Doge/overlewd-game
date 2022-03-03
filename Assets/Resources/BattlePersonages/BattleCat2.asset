@@ -18,6 +18,9 @@ MonoBehaviour:
   isEnemy: 1
   isBoss: 0
   charClass: 0
+  idleScale: 0.32
+  battleScale: 0.56
+  yOffset: 0
   initiative: 5
   attack: 10
   defence: 5

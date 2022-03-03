@@ -18,6 +18,9 @@ MonoBehaviour:
   isEnemy: 0
   isBoss: 0
   charClass: 1
+  idleScale: 0.26
+  battleScale: 0.38
+  yOffset: 1000
   initiative: 10
   attack: 10
   defence: 5
@@ -34,7 +37,6 @@ MonoBehaviour:
   maxMp: 100
   isDead: 0
   folder: BattlePersonages/BattleCat1/pers/
-  sdaAnimations: []
   ani_idle_path: idle0_SkeletonData
   ani_pAttack_1_path: prepair1_SkeletonData
   ani_pAttack_2_path: prepair2_SkeletonData

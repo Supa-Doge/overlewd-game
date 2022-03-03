@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Overlewd
 {
@@ -29,7 +31,7 @@ namespace Overlewd
 		[HideInInspector]
 		public int buffDamageScale = 2;
 
-		private bool isNotBusy = true;
+
 		public bool isDead = false;
 
 		private Transform battleLayer;
@@ -38,6 +40,9 @@ namespace Overlewd
 		private List<SpineWidget> spineWidgets;
 		private float[] aniDuration = { 2f, 0.9f, 0.9f, 1f, 1f, 2f, 2.333f };
 		private int aniID = 0;
+		private RectTransform rt;
+
+		public Action setAttackItem;
 
 		private void Start()
 		{
@@ -46,16 +51,19 @@ namespace Overlewd
 			Init();
 		}
 
-		
+
 
 		private void Init()
 		{
+			rt = gameObject.AddComponent<RectTransform>();
+			UIManager.SetStretch(GetComponent<RectTransform>());
+
 			isEnemy = character.isEnemy;
 			battleOrder = character.battleOrder;
 			idleScale = character.idleScale;
+			rt.localScale *= idleScale;
 			battleScale = character.battleScale;
-			gameObject.AddComponent<RectTransform>();
-			UIManager.SetStretch(GetComponent<RectTransform>());
+
 
 			battlePos = isEnemy ? GameObject.Find("battlePos2").transform : GameObject.Find("battlePos1").transform;
 			battleLayer = GameObject.Find("BattleLayer").transform;
@@ -84,21 +92,12 @@ namespace Overlewd
 			}*/
 		}
 
-		private void DurationDataInit() //duration not working
-		{
-			for (int i = 0; i < spineWidgets.Count; i++)
-			{
-				//aniDuration[i] = spineWidgets[i].GetDuration();
-				Debug.Log($"aniDuration {aniDuration[i]}");
-			}
-		}
-
 		private void InsAndAddSWToList(string path)
 		{
 			var sW = SpineWidget.GetInstance(transform);
 			sW.Initialize(path);
-			sW.Scale(idleScale);
-			spineWidgets.Add(sW);
+			sW.transform.localPosition = new Vector3(0, character.yOffset, 0);
+			spineWidgets.Add(sW); //add sW to list
 		}
 
 		private void PlayAnimID(int listID, string name, bool loop)
@@ -112,7 +111,7 @@ namespace Overlewd
 		{
 			PlayAnimID(0, character.ani_idle_name, true);
 		}
-		
+
 		public void PlayDifeat()
 		{
 			PlayAnimID(7, character.ani_difeat_name, true);
@@ -120,49 +119,53 @@ namespace Overlewd
 
 		IEnumerator PlayAttack(int id, CharController target)
 		{
-			isNotBusy = false;
 			PlayAnimID(1 + id, character.ani_pAttack_1_name, false);
 			yield return new WaitForSeconds(aniDuration[1] + id);
 			PlayAnimID(3 + id, character.ani_attack_1_name, false);
 			yield return new WaitForSeconds(aniDuration[3] + id);
 
 			target.Damage(baseDamage * (isDamageBuff ? buffDamageScale : 1));
-			isNotBusy = true;
 			PlayIdle();
+			BattleOut();
 		}
-		
+
 		IEnumerator PlayDefence(CharController target)
 		{
+			BattleIn();
 			yield return new WaitForSeconds(target.aniDuration[1]);
 			PlayAnimID(5, character.ani_defence_name, false);
 			yield return new WaitForSeconds(aniDuration[5]);
 			PlayIdle();
+			BattleOut();
 		}
 
-		private void changeScelet()
+		public CharController Select()
 		{
-			//GetComponentInChildren<SkeletonGraphic>();
+
+			return this;
 		}
 
 		public void BattleIn()
 		{
+			transform.SetParent(battlePos);
+			rt.DOAnchorPos(Vector2.zero, 0.25f);
+			rt.DOScale(battleScale, 0.25f);
 			//UI.SetActive(false)
 			//SetParentTo Battle Pos
-			//MoveTo Battle Pos Vector3.zero
+
 			//Change Scale To BattleScale
 		}
 		public void BattleOut()
 		{
-			//Move To battleLayer pos
-			//
+			transform.SetParent(persPos);
+			rt.DOAnchorPos(Vector2.zero, 0.25f);
+			rt.DOScale(idleScale, 0.25f);
 		}
 
 		public void Attack(CharController target)
 		{
-			if (isNotBusy)
-			{
+				BattleIn();
 				StartCoroutine(PlayAttack(0, target));
-			}
 		}
 
 		public void Defence()
@@ -198,3 +201,14 @@ namespace Overlewd
 		}
 	}
 }
+
+
+/*		private void DurationDataInit() //duration not working
+		{
+			for (int i = 0; i < spineWidgets.Count; i++)
+			{
+				//aniDuration[i] = spineWidgets[i].GetDuration();
+				Debug.Log($"aniDuration {aniDuration[i]}");
+			}
+		}
+*/
