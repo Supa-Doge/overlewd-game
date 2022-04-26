@@ -319,6 +319,10 @@ namespace Overlewd
                 UIManager.MakeScreen<EventMapScreen>().
                     SetDataFromTeamEdit(eventMapStageId.Value).RunShowScreenProcess();
             }
+            else
+            {
+                UIManager.ShowScreen<HaremScreen>();
+            }
         }
     }
 }
