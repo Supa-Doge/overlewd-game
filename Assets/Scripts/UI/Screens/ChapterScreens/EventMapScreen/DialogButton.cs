@@ -50,7 +50,7 @@ namespace Overlewd
             public static DialogButton GetInstance(Transform parent)
             {
                 return ResourceManager.InstantiateWidgetPrefab<DialogButton>
-                    ("Prefabs/UI/Screens/ChapterScreens/EventMapScreen/DialogButton", parent);
+                    ("Prefabs/UI/Screens/ChapterScreens/DialogButton", parent);
             }
         }
     }

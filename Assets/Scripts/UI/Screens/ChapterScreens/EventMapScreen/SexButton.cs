@@ -21,7 +21,7 @@ namespace Overlewd
                 button = canvas.Find("Button").GetComponent<Button>();
                 button.onClick.AddListener(ButtonClick);
 
-                sceneDone = button.transform.Find("SceneDone").gameObject;
+                sceneDone = button.transform.Find("Done").gameObject;
                 title = button.transform.Find("Title").GetComponent<TextMeshProUGUI>();
             }
 
@@ -50,7 +50,7 @@ namespace Overlewd
             public static SexButton GetInstance(Transform parent)
             {
                 return ResourceManager.InstantiateWidgetPrefab<SexButton>
-                    ("Prefabs/UI/Screens/ChapterScreens/EventMapScreen/SexSceneButton", parent);
+                    ("Prefabs/UI/Screens/ChapterScreens/SexSceneButton", parent);
             }
         }
     }

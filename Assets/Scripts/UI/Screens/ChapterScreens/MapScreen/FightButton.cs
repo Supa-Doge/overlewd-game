@@ -17,11 +17,13 @@ namespace Overlewd
             protected GameObject icon;
             protected GameObject bossIcon;
             protected TextMeshProUGUI markers;
+            
+            protected const string animPath = "Prefabs/UI/Screens/ChapterScreens/FX/StageNew/battle/Idle_SkeletonData";
 
             protected override void Awake()
             {
                 base.Awake();
-
+                
                 loot = button.transform.Find("Loot").GetComponent<TextMeshProUGUI>();
                 icon = button.transform.Find("Icon").gameObject;
                 bossIcon = button.transform.Find("BossIcon").gameObject;
@@ -37,8 +39,15 @@ namespace Overlewd
                 loot.text = battleData.rewardSpriteString;
                 icon.SetActive(battleData.type == AdminBRO.Battle.Type_Battle);
                 bossIcon.SetActive(battleData.type == AdminBRO.Battle.Type_Boss);
+                
+                if (anim != null)
+                {
+                    anim.Initialize(animPath);
+                    anim.PlayAnimation("action", false);
+                }
             }
 
+            
             protected override void ButtonClick()
             {
                 base.ButtonClick();
@@ -64,7 +73,7 @@ namespace Overlewd
             public static FightButton GetInstance(Transform parent)
             {
                 return ResourceManager.InstantiateWidgetPrefab<FightButton>
-                    ("Prefabs/UI/Screens/ChapterScreens/MapScreen/FightButton", parent);
+                    ("Prefabs/UI/Screens/ChapterScreens/FightButton", parent);
             }
         }
     }

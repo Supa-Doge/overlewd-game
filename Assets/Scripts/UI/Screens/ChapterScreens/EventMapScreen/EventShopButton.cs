@@ -49,7 +49,7 @@ namespace Overlewd
             public static EventShopButton GetInstance(Transform parent)
             {
                 return ResourceManager.InstantiateWidgetPrefab<EventShopButton>
-                    ("Prefabs/UI/Screens/ChapterScreens/EventMapScreen/EventShopButton", parent);
+                    ("Prefabs/UI/Screens/ChapterScreens/EventShopButton", parent);
             }
         }
     }
