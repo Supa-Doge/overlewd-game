@@ -34,17 +34,13 @@ namespace Overlewd
             {
                 SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
 
-                switch (GameGlobalStates.ftueChapterData.key)
+                switch (GameData.ftue.activeChapter.key)
                 {
                     case "chapter1":
                         switch (inputData.ftueStageData.key)
                         {
                             case "battle4":
-                                UIManager.MakeScreen<CastleScreen>().
-                                    SetData(new CastleScreenInData
-                                    {
-                                        mode = BaseScreenInData.Mode.FTUE
-                                    }).RunShowScreenProcess();
+                                UIManager.ShowScreen<CastleScreen>();
                                 break;
                             default:
                                 UIManager.ShowScreen<MapScreen>();
