@@ -33,7 +33,7 @@ namespace Overlewd
             public override void BattleDefeat()
             {
                 UIManager.MakePopup<DefeatPopup>().
-                    SetData(new DefeatPopupInData
+                    SetData(new DefeatPopup.DefeatPopupInData
                     {
                         ftueStageId = inputData.ftueStageId
                     }).RunShowPopupProcess();
