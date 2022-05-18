@@ -31,6 +31,7 @@ namespace Overlewd
         private NSCastleScreen.CathedralButton cathedralButton;
         private NSCastleScreen.CatacombsButton catacombsButton;
         private NSCastleScreen.AerostatButton aerostatButton;
+        private Button sideMenuButton;
 
         private EventsWidget eventsPanel;
         private QuestsWidget questsPanel;
@@ -57,6 +58,9 @@ namespace Overlewd
             cathedral = canvas.Find("Cathedral");
             catacombs = canvas.Find("Catacombs");
             aerostat = canvas.Find("Aerostat");
+
+            sideMenuButton = canvas.Find("SideMenuButton").GetComponent<Button>();
+            sideMenuButton.onClick.AddListener(SideMenuButtonClick);
         }
 
         public CastleScreen SetData(CastleScreenInData data)
@@ -116,7 +120,6 @@ namespace Overlewd
             questsPanel.Hide();
             buffPanel = BuffWidget.GetInstance(transform);
             buffPanel.Hide();
-            SidebarButtonWidget.GetInstance(transform);
 
             await Task.CompletedTask;
         }
@@ -160,6 +163,12 @@ namespace Overlewd
             await Task.CompletedTask;
         }
 
+        private void SideMenuButtonClick()
+        {
+            SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
+            UIManager.ShowOverlay<SidebarMenuOverlay>();
+        }
+        
         public override void StartShow()
         {
             SoundManager.PlayOneShot(FMODEventPath.UI_CastleWindowShow);
