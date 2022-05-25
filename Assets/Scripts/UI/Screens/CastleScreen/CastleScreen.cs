@@ -40,8 +40,6 @@ namespace Overlewd
 
         private FMODEvent music;
 
-        private CastleScreenInData inputData = new CastleScreenInData();
-
         private void Awake()
         {
             var screenInst =
@@ -64,12 +62,6 @@ namespace Overlewd
             aerostat = canvas.Find("Aerostat");
         }
 
-        public CastleScreen SetData(CastleScreenInData data)
-        {
-            inputData = data;
-            return this;
-        }
-
         public override async Task BeforeShowMakeAsync()
         {
             foreach (var building in GameData.buildings.buildings)
@@ -81,7 +73,7 @@ namespace Overlewd
                     {
                         case AdminBRO.Building.Key_Harem:
                             haremButton = NSCastleScreen.HaremButton.GetInstance(harem);
-                            haremButton.screenInData = inputData;
+                            haremButton.screenInData = new CastleScreenInData();
                             break;
                         case AdminBRO.Building.Key_Market:
                             marketButton = NSCastleScreen.MarketButton.GetInstance(market);
@@ -122,7 +114,7 @@ namespace Overlewd
             questsPanel = QuestsWidget.GetInstance(transform);
             questsPanel.Hide();
             buffPanel = BuffWidget.GetInstance(transform);
-            buffPanel.inputData = inputData;
+            buffPanel.inputData = new CastleScreenInData();
             buffPanel.Hide();
 
             switch (GameData.ftue.stats.lastEndedState)
@@ -191,7 +183,11 @@ namespace Overlewd
         private void SidebarButtonClick()
         {
             SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
-            UIManager.ShowOverlay<SidebarMenuOverlay>();
+            UIManager.MakeOverlay<SidebarMenuOverlay>().
+                SetData(new SidebarMenuOverayInData
+            {
+                prevScreenInData = new CastleScreenInData()
+            }).RunShowOverlayProcess();
         }
     }
 

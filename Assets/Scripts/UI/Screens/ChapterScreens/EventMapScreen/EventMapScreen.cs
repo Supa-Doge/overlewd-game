@@ -178,7 +178,11 @@ namespace Overlewd
         private void SidebarButtonClick()
         {
             SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
-            UIManager.ShowOverlay<SidebarMenuOverlay>();
+            UIManager.MakeOverlay<SidebarMenuOverlay>().
+                SetData(new SidebarMenuOverayInData
+            {
+                prevScreenInData = inputData
+            }).RunShowOverlayProcess();
         }
 
         private AdminBRO.EventChapter GetActiveChapter(AdminBRO.EventItem eventData)

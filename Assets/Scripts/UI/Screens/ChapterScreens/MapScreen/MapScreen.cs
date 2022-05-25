@@ -21,7 +21,7 @@ namespace Overlewd
 
         protected GameObject chapterMap;
 
-        private MapScreenInData inputData = new MapScreenInData();
+        private MapScreenInData inputData;
 
         private EventsWidget eventsPanel;
         private QuestsWidget questsPanel;
@@ -171,7 +171,11 @@ namespace Overlewd
         private void SidebarButtonClick()
         {
             SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
-            UIManager.ShowOverlay<SidebarMenuOverlay>();
+            UIManager.MakeOverlay<SidebarMenuOverlay>().
+                SetData(new SidebarMenuOverayInData
+            {
+                prevScreenInData = inputData
+            }).RunShowOverlayProcess();
         }
 
         public override async Task AfterShowAsync()

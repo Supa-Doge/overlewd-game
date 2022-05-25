@@ -63,7 +63,9 @@ namespace Overlewd
 
             GameData.progressMode = false;
             GameData.ftue.info.chapter1.SetAsMapChapter();
-            UIManager.ShowScreen<MapScreen>();
+            UIManager.MakeScreen<MapScreen>().
+                SetData(new MapScreenInData()).
+                RunShowScreenProcess();
         }
 
         private void Reset_FTUE_ButtonClick()

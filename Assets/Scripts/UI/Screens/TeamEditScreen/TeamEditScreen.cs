@@ -301,7 +301,7 @@ namespace Overlewd
         {
             SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
 
-            if (inputData != null)
+            if (inputData?.prevScreenInData != null)
             {
                 if (inputData.prevScreenInData.IsType<HaremScreenInData>())
                 {
