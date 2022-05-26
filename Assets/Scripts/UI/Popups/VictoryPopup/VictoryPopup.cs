@@ -59,20 +59,35 @@ namespace Overlewd
         {
             SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
 
-            switch (inputData.ftueStageData?.ftueState)
+            if (inputData.ftueStageData?.ftueState == ("battle4", "chapter1"))
+            {
+                UIManager.ShowScreen<CastleScreen>();
+                return;
+            }
+            if (UIManager.currentScreenInData.prevScreenInData.IsType<MapScreenInData>())
+            {
+                UIManager.ShowScreen<MapScreen>();
+                return;
+            }
+            if (inputData.ftueStageData?.ftueState == null)
+            {
+                UIManager.ShowScreen<EventMapScreen>();
+            }
+            
+            /*switch (inputData.ftueStageData?.ftueState)
             {
                 case ("battle4", "chapter1"):
                     UIManager.ShowScreen<CastleScreen>();
                     break;
-
+            
                 case null:
                     UIManager.ShowScreen<EventMapScreen>();
                     break;
-
+            
                 default:
                     UIManager.ShowScreen<MapScreen>();
                     break;
-            }
+            }*/
         }
 
         private void RepeatButtonClick()
