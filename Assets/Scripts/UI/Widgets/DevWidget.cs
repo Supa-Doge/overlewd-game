@@ -1,43 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Overlewd
 {
-    public class StartingScreen : BaseFullScreenParent<StartingScreenInData>
+    public class DevWidget : BaseWidget
     {
         private Button FTUE_Button;
-        private Button Castle_Button;
         private Button Reset_Button;
         private Button FTUE_Dev_Button;
         private Button Battle_Button;
+        private Button showHideButton;
+        
+        private RectTransform backRect;
+        private bool isOpen = true;
 
-        void Awake()
+        private void Awake()
         {
-            var screenInst = ResourceManager.InstantiateScreenPrefab("Prefabs/UI/Screens/StartingScreen/StartingScreen", transform);
-
-            var canvas = screenInst.transform.Find("Canvas");
-
-            FTUE_Button = canvas.Find("FTUE").GetComponent<Button>();
+            var canvas = transform.Find("Canvas");
+            backRect = canvas.Find("BackRect").GetComponent<RectTransform>();
+                
+            FTUE_Button = backRect.Find("FTUE").GetComponent<Button>();
             FTUE_Button.onClick.AddListener(FTUE_ButtonClick);
 
-            Castle_Button = canvas.Find("Castle").GetComponent<Button>();
-            Castle_Button.onClick.AddListener(Castle_ButtonClick);
-
-            Reset_Button = canvas.Find("Reset").GetComponent<Button>();
+            Reset_Button = backRect.Find("Reset").GetComponent<Button>();
             Reset_Button.onClick.AddListener(Reset_ButtonClick);
 
-            FTUE_Dev_Button = canvas.Find("FTUE_Dev").GetComponent<Button>();
+            FTUE_Dev_Button = backRect.Find("FTUE_dev").GetComponent<Button>();
             FTUE_Dev_Button.onClick.AddListener(FTUE_Dev_ButtonClick);
 
-            Battle_Button = canvas.Find("Battle").GetComponent<Button>();
+            Battle_Button = backRect.Find("Battle").GetComponent<Button>();
             Battle_Button.onClick.AddListener(Battle_ButtonClick);
 
-            DevWidget.GetInstance(transform);
+            showHideButton = backRect.Find("ShowHideButton").GetComponent<Button>();
+            showHideButton.onClick.AddListener(ShowHideButtonClick);
 
+            ShowHideButtonClick();
+            
 #if !UNITY_EDITOR
             Battle_Button.gameObject.SetActive(false);
 #endif
@@ -46,7 +48,27 @@ namespace Overlewd
             FTUE_Dev_Button.gameObject.SetActive(false);
 #endif
         }
+        
+        private async Task ShowAsync()
+        {
+            await UITools.TopShowAsync(backRect);
+            isOpen = true;
+        }
 
+        private async Task HideAsync()
+        {
+            await UITools.TopHideAsync(backRect);
+            isOpen = false;
+        }
+
+        private async void ShowHideButtonClick()
+        {
+            if (isOpen)
+                await HideAsync();
+            else
+                await ShowAsync();
+        }
+        
         private void FTUE_ButtonClick()
         {
             SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
@@ -61,19 +83,11 @@ namespace Overlewd
             }
             else
             {
-                UIManager.MakeScreen<SexScreen>().
-                    SetData(new SexScreenInData
-                    {
-                        ftueStageId = firstSexStage.id,
-                    }).RunShowScreenProcess();
+                UIManager.MakeScreen<SexScreen>().SetData(new SexScreenInData
+                {
+                    ftueStageId = firstSexStage.id,
+                }).RunShowScreenProcess();
             }
-        }
-
-        private void Castle_ButtonClick()
-        {
-            SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
-            GameData.devMode = true;
-            UIManager.ShowScreen<CastleScreen>();
         }
 
         private void Reset_ButtonClick()
@@ -95,11 +109,10 @@ namespace Overlewd
         {
             SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
             GameData.devMode = true;
-            UIManager.MakeScreen<BaseBattleScreen>().
-                SetData(new BaseBattleScreenInData
-                {
-                    battleId = 19
-                }).RunShowScreenProcess();
+            UIManager.MakeScreen<BaseBattleScreen>().SetData(new BaseBattleScreenInData
+            {
+                battleId = 19
+            }).RunShowScreenProcess();
         }
 
         private async void ResetAndQuit()
@@ -107,10 +120,10 @@ namespace Overlewd
             await AdminBRO.resetAsync();
             Game.Quit();
         }
-    }
 
-    public class StartingScreenInData : BaseFullScreenInData
-    {
-
+        public static DevWidget GetInstance(Transform parent)
+        {
+            return ResourceManager.InstantiateWidgetPrefab<DevWidget>("Prefabs/UI/Widgets/DevWidget/DevWidget", parent);
+        }
     }
 }

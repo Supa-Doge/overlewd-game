@@ -256,7 +256,7 @@ namespace Overlewd
 
             await UniTask.Delay(500);
 
-            UIManager.ShowScreen<StartingScreen>();
+            UIManager.ShowScreen<CastleScreen>();
         }
 
         public override async Task AfterShowAsync()

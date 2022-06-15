@@ -58,6 +58,7 @@ namespace Overlewd
         private EventsWidget eventsPanel;
         private QuestsWidget questsPanel;
         private BuffWidget buffPanel;
+        private DevWidget devWidget;
 
         private FMODEvent music;
 
@@ -162,6 +163,7 @@ namespace Overlewd
             questsPanel.Hide();
             buffPanel = BuffWidget.GetInstance(transform);
             buffPanel.Hide();
+            devWidget = DevWidget.GetInstance(transform);
 
             switch (GameData.ftue.stats.lastEndedState)
             {
