@@ -18,7 +18,7 @@ namespace Overlewd
             private Button isMax;
             private Button isOpen;
 
-            public AdminBRO.MagicGuildSkill skillData;
+            public string skillType { get; set; }
             
             private void Awake()
             {
@@ -40,6 +40,7 @@ namespace Overlewd
 
             public void Customize()
             {
+                var skillData = GameData.buildings.GetMagicGuildSkillByType(skillType);
                 isLocked.SetActive(false);
                 level.text = skillData.isLvlMax ? "MAX" : "Lvl " + skillData.currentSkillLevel;
                 title.text = skillData.current.name;
@@ -50,6 +51,7 @@ namespace Overlewd
 
             private void IsMaxButtonClick()
             {
+                var skillData = GameData.buildings.GetMagicGuildSkillByType(skillType);
                 SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
                 UIManager.MakePopup<SpellPopup>().
                     SetData(new SpellPopupInData
@@ -60,6 +62,7 @@ namespace Overlewd
 
             private void IsOpenButtonClick()
             {
+                var skillData = GameData.buildings.GetMagicGuildSkillByType(skillType);
                 SoundManager.PlayOneShot(FMODEventPath.UI_GenericButtonClick);
                 UIManager.MakePopup<SpellPopup>().
                     SetData(new SpellPopupInData
