@@ -89,7 +89,7 @@ namespace Overlewd
         
         private void Customize()
         {
-            foreach (var gacha in GameData.gacha.items)
+            /*foreach (var gacha in GameData.gacha.items)
             {
                 switch (gacha.tabType)
                 {
@@ -142,7 +142,7 @@ namespace Overlewd
                         }
                         break;
                 }
-            }
+            }*/
             
             foreach (var i in buttonsIds)
             {
