@@ -18,7 +18,10 @@ namespace Overlewd
             BuildingBuild,
             BuildingBuildCrystal,
             CharacterLvlUp,
+            CharacterSkillLvlUp,
             MagicGuildSpellLvlUp,
+            EquipmentEquipped,
+            EquipmentUnequipped
         }
     }
 
@@ -246,6 +249,10 @@ namespace Overlewd
             await AdminBRO.chracterSkillLvlUp(chId, skillId);
             await Get(); 
             await GameData.player.Get();
+            UIManager.ThrowGameDataEvent(new GameDataEvent
+            {
+                type = GameDataEvent.Type.CharacterSkillLvlUp
+            });
         }
 
         public async Task Mrg(int srcID, int tgtId)
@@ -302,6 +309,10 @@ namespace Overlewd
             await AdminBRO.equipAsync(chId, eqId);
             await GameData.characters.Get();
             await Get();
+            UIManager.ThrowGameDataEvent(new GameDataEvent
+            {
+                type = GameDataEvent.Type.EquipmentEquipped
+            });
         }
 
         public async Task Unequip(int chId, int eqId)
@@ -309,6 +320,11 @@ namespace Overlewd
             await AdminBRO.unequipAsync(chId, eqId);
             await GameData.characters.Get();
             await Get();
+            
+            UIManager.ThrowGameDataEvent(new GameDataEvent
+            {
+                type = GameDataEvent.Type.EquipmentUnequipped
+            });
         }
     }
 
