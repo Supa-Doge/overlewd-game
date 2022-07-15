@@ -242,6 +242,7 @@ namespace Overlewd
 
             ShowMain(replica, prevReplica);
             ShowCutIn(replica, prevReplica);
+            replicaSound?.Stop();
             PlaySound(replica);
 
             if (!(currentReplicaId + 1 < dialogReplicas.Count))

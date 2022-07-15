@@ -546,6 +546,7 @@ namespace Overlewd
             }
 
             ShowPersEmotion(replica, prevReplica);
+            replicaSound?.Stop();
             PlaySound(replica);
             ShowCutIn(replica, prevReplica);
 
